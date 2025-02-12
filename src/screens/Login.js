@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import Navbar from '../components/Navbar';
-import { useNavigate, Link } from 'react-router-dom'
+ import { useNavigate, Link } from 'react-router-dom'
 export default function Login() {
   const [credentials, setCredentials] = useState({ email: "", password: "" })
   let navigate = useNavigate()
@@ -22,7 +21,7 @@ export default function Login() {
     if (json.success) {
       //save the auth toke to local storage and redirect
       localStorage.setItem('userEmail', credentials.email)
-      localStorage.setItem('token', json.authToken)
+      localStorage.setItem('token', json.token)
       navigate("/");
 
     }
@@ -37,9 +36,6 @@ export default function Login() {
 
   return (
     <div style={{backgroundImage: 'url("https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")', height: '100vh', backgroundSize: 'cover' }}>
-      <div>
-        <Navbar />
-      </div>
       <div className='container'>
         <form className='w-50 m-auto mt-5 border bg-dark border-success rounded' onSubmit={handleSubmit}>
           <div className="m-3">

@@ -6,7 +6,7 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs')
 var jwt = require('jsonwebtoken');
 const axios = require('axios')
-const fetch = require('../middleware/fetchdetails');
+const { jwtAuthMiddleware, generateToken}  = require('../middleware/fetchdetails');
 const jwtSecret = "HaHa"
 // var foodItems= require('../index').foodData;
 // require("../index")
@@ -28,7 +28,6 @@ router.post('/createuser', [
     try {
         await User.create({
             name: req.body.name,
-            // password: req.body.password,  first write this and then use bcryptjs
             password: securePass,
             email: req.body.email,
             location: req.body.location
@@ -38,9 +37,9 @@ router.post('/createuser', [
                     id: user.id
                 }
             }
-            const authToken = jwt.sign(data, jwtSecret);
+            const token = generateToken(data);
             success = true
-            res.json({ success, authToken })
+            res.json({ success, token })
         })
             .catch(err => {
                 console.log(err);
@@ -69,20 +68,20 @@ router.post('/login', [
             return res.status(400).json({ success, error: "Try Logging in with correct credentials" });
         }
 
-        const pwdCompare = await bcrypt.compare(password, user.password); // this return true false.
+        const pwdCompare = await bcrypt.compare(password, user.password); 
+
         if (!pwdCompare) {
             return res.status(400).json({ success, error: "Try Logging in with correct credentials" });
         }
-        const data = {
-            user: {
-                id: user.id
-            }
+        const payload = {
+            id: user.id
         }
+
+        
         success = true;
-        const authToken = jwt.sign(data, jwtSecret);
-        res.json({ success, authToken })
-
-
+        const token = generateToken(payload);// this return true false.
+        res.json({ success, token })
+        
     } catch (error) {
         console.error(error.message)
         res.send("Server Error")
@@ -90,11 +89,12 @@ router.post('/login', [
 })
 
 // Get logged in User details, Login Required.
-router.post('/getuser', fetch, async (req, res) => {
+router.get('/getuser', jwtAuthMiddleware, async (req, res) => {
     try {
         const userId = req.user.id;
-        const user = await User.findById(userId).select("-password") // -password will not pick password from db.
-        res.send(user)
+        const user = await User.findById(userId);
+         // -password will not pick password from db.
+        res.send({user})
     } catch (error) {
         console.error(error.message)
         res.send("Server Error")

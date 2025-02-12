@@ -1,0 +1,103 @@
+.items_count{
+    width: 70%;
+    padding: 4px;
+    text-align: center;
+}
+
+.btn-count{
+    background-color: rgb(135, 14, 14);
+    padding: 9px;
+    color: white;
+    font-weight: bolder;
+}
+.size_of_item{
+   border: none;
+   color: green;
+   font-size: 20px;
+}
+
+.price_and_size_container{
+    display: flex;
+   justify-content: space-around;
+   padding: 4px;
+}
+
+.final_price_item{
+    font-size: 20px;
+}
+
+.card_body{
+    border: 3px solid gray;
+}
+
+.card-img-top{
+    height: 160px !important;/* Occupies 50% of the container's width */
+     /* Stretches to fill the container's height */
+    object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+     
+}
+
+.container_2{
+ 
+  max-height: 500px !important;
+  margin: 10px;
+  overflow: hidden;
+    position: relative; 
+    box-shadow: 0px -1px 7px 0px gray;
+}
+
+.add_to_cart_btn{
+    width: 100%;
+    border: 1px solid gray;
+    background-color: rgb(10, 10, 181);
+    color: white;
+    padding: 8px;
+    margin-bottom: 12px;
+}
+
+
+.card_body{
+    padding: 4px;
+}
+.add_to_cart_btn:hover{
+    color: rgb(10 10 181);
+    background-color: white;
+    border: 1px solid rgb(10 10 181);
+}
+@media only screen and (max-width : 720px){
+.container_2{
+  border: 2px solid black;
+  margin: 2px;
+  display: flex;
+  width: 100% !important;
+} 
+.card-img-top{
+    
+    height : 200px !important;
+    width: 50%;
+    object-fit: cover;
+    flex: 1;
+    padding: 10px;
+    margin: auto;
+}
+
+.viewcart{
+    width: 100% !important;
+}
+.card_body{
+    flex: 1;
+    padding: 20px;
+}
+
+.card-title{
+    font-size: 14px;
+}
+.items_count{
+    width: 75%;
+    padding: 2px;
+}
+
+.btn-count{
+    padding: 5px;
+}
+}

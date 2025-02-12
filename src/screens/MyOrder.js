@@ -38,10 +38,7 @@ export default function MyOrder() {
 
     return (
         <div>
-            <div>
-                <Navbar />
-            </div>
-
+           
             <div className='container'>
                 <div className='row'>
 
@@ -93,8 +90,7 @@ export default function MyOrder() {
 
 
             </div>
-
-            <Footer />
+ 
         </div>
     )
 }

@@ -1,0 +1,176 @@
+.navbar_container{
+    background: #cbc7c717;    
+    box-shadow: -1px -1px 8px 0px gray;
+}
+
+.navbar-brand img{
+    width: 200px;
+    
+}
+
+.logo{
+    width: 200px;
+}
+.navbar_list{
+    display: flex;
+    gap: 12px;
+    list-style: none;
+}
+
+.link_nav{
+    text-decoration: none;
+    color: rgb(149, 17, 17);
+}
+
+.container_fluid{
+    display: flex;
+}
+
+.cart_logout{
+    display: flex;
+}
+
+.navbar_content{
+    display: flex;
+    width: 90%;
+}
+
+.container_fluid{
+display: flex;
+gap: 94px;
+justify-content: spa	
+}
+
+.navbar_list {
+    display: flex;
+    grid-gap: 12px;
+    justify-content: space-between;
+    gap: 122px;
+    list-style: none;
+    margin-right: 131px;
+    align-items: center;
+}
+
+
+.cart_logout {
+    display: flex;
+     justify-content: space-between;
+    gap: 105px;
+    align-items: center;
+}
+
+.navbar_content {
+    display: flex;
+    justify-content: space-around !important;
+}  
+
+.navbar_list {
+    display: flex
+;
+    grid-gap: 12px;
+    justify-content: space-between;
+    grid-gap: 122px;
+    gap: 174px;
+    list-style: none;
+    margin-right: 131px;
+    align-items: center;
+}
+
+
+.cart_logout{
+display: flex
+;
+    justify-content: space-between;
+    grid-gap: 105px;
+    gap: 105px;
+    align-items: center;
+}
+
+.logo {
+    width: 200px;
+    margin: auto;
+    display: block;
+}
+.navbar_content {
+    font-size: 19px;
+    display: flex;
+  justify-content: space-between !important;
+    gap: 43px;
+}
+
+.search_div{
+    margin: auto;
+}
+
+.login_btn{
+       background: #cd978ecf;
+    padding: 8px 28px;
+    border-radius: 25px;
+    display: inline-block;
+    /* height: 31px; */
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: lighter;
+    font-family: monospace;
+    border: 2px solid;
+}
+
+.signup_btn{
+       background: #cd978ecf;
+    padding: 8px 28px;
+    border-radius: 25px;
+    display: inline-block;
+    /* height: 31px; */
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: lighter;
+    font-family: monospace;
+    border: 2px solid;
+}
+
+.login_btn:hover , .signup_btn:hover{
+    color: #cd978ecf;
+    background-color: transparent;
+    border: 2px solid;
+}
+.register_btn_container{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.search_input{
+width: 30rem;
+    word-spacing: 4px;
+    /* text-align: center; */
+    font-size: 17px;
+    font-family: none;
+    font-weight: lighter;
+    color: black !important;
+    padding-left: 31px;
+}
+
+.search_input:focus{
+    box-shadow: 0px 0px 3px 2px #80808099;
+    border: none !important;
+}
+
+.logo_profile{
+text-align: center;
+    margin: auto;
+    /* background: gainsboro; */
+    padding: 11px;
+    /* border-radius: 50%; */
+    margin-left: 10px;
+    background: #0f0f84;
+    border-radius: 0% 50% 50% 0%;
+    color: white;
+    font-weight: bolder;
+    margin-left: 0px;
+}
+
+.search_div{
+    display: flex;
+}
