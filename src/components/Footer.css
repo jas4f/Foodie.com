@@ -1,0 +1,12 @@
+.footer_container{
+    display: flex
+;
+    align-items: center;
+    margin: auto;
+    padding-top: 40px;
+    justify-content: space-around;
+}
+
+.container_foot{
+   display: block; align-items: center; box-shadow: 5px 1px 8px 1px #b1b1b1; height: 116px; margin: auto; background: #dcdcdc40;
+}
