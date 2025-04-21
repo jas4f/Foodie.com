@@ -4,13 +4,78 @@ const Order = require('../models/Orders')
 const router = express.Router()
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs')
-var jwt = require('jsonwebtoken');
 const axios = require('axios')
 const { jwtAuthMiddleware, generateToken}  = require('../middleware/fetchdetails');
-const jwtSecret = "HaHa"
+const nodemailer = require('nodemailer');
+
 // var foodItems= require('../index').foodData;
 // require("../index")
 //Creating a user and storing data to MongoDB Atlas, No Login Requiered
+
+router.post('/reset-password', async (req, res) => {
+    const { token, password } = req.body;
+
+    try {
+        // Step 1: Find the user by reset token and check expiry
+        const user = await User.findOne({
+            resetToken: token,
+            resetTokenExpiry: { $gt: Date.now() } // Check token is not expired
+        });
+
+        if (!user) {
+            return res.status(400).json({ success: false, message: 'Invalid or expired token' });
+        }
+
+        // Step 2: Hash new password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        // Step 3: Update password and clear resetToken fields
+        user.password = hashedPassword;
+        user.resetToken = undefined;
+        user.resetTokenExpiry = undefined;
+        await user.save();
+
+        res.json({ success: true, message: "Password updated successfully" });
+
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Server error");
+    }
+});
+
+router.post('/reset-password-email', async (req, res) => {
+    const { email } = req.body;
+
+    // Example: Generate dummy reset token
+    const resetToken = Math.random().toString(36).substring(2, 15);
+
+    // Send email using nodemailer
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'jaspreetgilhotra@gmail.com', // replace with your email
+            pass: 'your_app_password',   // generate app-specific password if 2FA enabled
+        }
+    });
+
+    const mailOptions = {
+        from: 'jaspreetgilhotra@gmail.com',
+        to: email,
+        subject: 'Password Reset Link',
+        html: `<p>Click the link below to reset your password:</p>
+           <a href="http://localhost:3000/reset-password/${resetToken}">Reset Password</a>`
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        res.json({ success: true, message: 'Reset link sent to email.' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Email could not be sent.' });
+    }
+});
+
 router.post('/createuser', [
     body('email').isEmail(),
     body('password').isLength({ min: 5 }),

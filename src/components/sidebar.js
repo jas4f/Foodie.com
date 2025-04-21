@@ -1,9 +1,9 @@
-import React, { useNavigation, useState } from 'react';
+import React, {  useState } from 'react';
 import './Sidebar.css'; // Reverted to regular CSS file
-
+import { useNavigate } from 'react-router-dom';
 function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
-    const navigation = useNavigation();
+    const navigation = useNavigate();
     const [profileData, setProfileData] = useState();
     const toggleSidebar = () => {
         setIsOpen(!isOpen);

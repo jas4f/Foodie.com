@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 // const mongoDbClient = require("mongodb").MongoClient
-const mongoURI = process.env.DB_URL;
+const mongoURI = process.env.MONGOURI
 module.exports = function (callback) {
     mongoose.connect(mongoURI, { useNewUrlParser: true }, async (err, result) => {
         // mongoDbClient.connect(mongoURI, { useNewUrlParser: true }, async(err, result) => {

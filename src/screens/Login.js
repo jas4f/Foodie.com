@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
- import { useNavigate, Link } from 'react-router-dom'
+ import {  Link } from 'react-router-dom'
+ import myImage from '../components/Images/cover.png'
 export default function Login() {
   const [credentials, setCredentials] = useState({ email: "", password: "" })
-  let navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,8 +22,7 @@ export default function Login() {
       //save the auth toke to local storage and redirect
       localStorage.setItem('userEmail', credentials.email)
       localStorage.setItem('token', json.token)
-      navigate("/");
-
+      navigator()
     }
     else {
       alert("Enter Valid Credentials")
@@ -35,24 +34,34 @@ export default function Login() {
   }
 
   return (
-    <div style={{backgroundImage: 'url("https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")', height: '100vh', backgroundSize: 'cover' }}>
-      <div className='container'>
-        <form className='w-50 m-auto mt-5 border bg-dark border-success rounded' onSubmit={handleSubmit}>
-          <div className="m-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-            <input type="email" className="form-control" name='email' value={credentials.email} onChange={onChange} aria-describedby="emailHelp" />
-            <div id="emailHelp" className="form-text">We'll never share your email with anyone.</div>
+     <div className='flex bg-gray-100 justify-center items-center h-[100vh] gap-30'>
+          <div>
+            <h3 className='text-black font-lighter text-center'><span className='font-extralight text-5xl'>Welcome</span> <br /><span className='font-light text-3xl pt-3'>To</span></h3>
+          <img src={myImage} alt="no pic" className='logo' />
           </div>
-          <div className="m-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-            <input type="password" className="form-control" value={credentials.password} onChange={onChange} name='password' />
-          </div>
-          <button type="submit" className="m-3 btn btn-success">Submit</button>
-          <Link to="/signup" className="m-3 mx-1 btn btn-danger">New User</Link>
-        </form>
+          <div className='w-95' >
+              <form className=' m-auto pt-4 border bg-dark border-success p-4' onSubmit={handleSubmit}>
+              <h2 className='text-center text-gray-100 font-light'>Log In</h2>
+    
+                
+                <div className="m-3">
+                  <label htmlFor="email" className="form-label text-white">Email address</label>
+                <input type="email" className="border block w-100 p-2 text-white" name='email' value={credentials.email} onChange={onChange} aria-describedby="emailHelp" />
+                </div>
+               
+                <div className="m-3">
+                  <label htmlFor="exampleInputPassword1" className="form-label text-white">Password</label>
+                <input type="password" className="border block w-100 p-2 text-white" value={credentials.password} onChange={onChange} name='password' />
+                </div>
+                <button type="submit" className="mt-2 w-80 bg-green-300 p-2  hover:text-green-300 hover:bg-transparent hover:border-2">Submit</button>
+                <p className="text-white mt-2">Having not account?</p>
+                <Link to="/signup" className='decoration-0'>Sign Up</Link>
+  
+              </form>
+            </div>
+        </div>
 
-      </div>
-    </div>
+ 
   )
 }
 

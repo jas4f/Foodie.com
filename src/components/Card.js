@@ -2,10 +2,14 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatchCart, useCart } from './ContextReducer'
+import { ToastContainer, toast } from 'react-toastify';
+
 // import { Dropdown, DropdownButton } from 'react-bootstrap';
 import './Card.css';
 export default function Card(props) {
   let data = useCart();
+  const notify = () => toast("Wow so easy!");
+  <ToastContainer />
 
   let navigate = useNavigate()
   const [qty, setQty] = useState(1)
@@ -34,6 +38,7 @@ export default function Card(props) {
   }
   const handleAddToCart = async (event) => {
     event.preventDefault();
+    toast("add to cart successfully !!");
     let food = []
     for (const item of data) {
       if (item.id === foodItem._id) {
@@ -42,9 +47,9 @@ export default function Card(props) {
         break;
       }
     }
-    setMess('Add to cart successfully ✅');
-    console.log('data is : ',data)
-    console.log(new Date())
+    // setMess('Add to cart successfully ✅');
+    // console.log('data is : ',data)
+    // console.log(new Date())
     if (food.length) {
        
       if (food.size === size) {
@@ -55,12 +60,14 @@ export default function Card(props) {
       else if (food.size !== size) {
         await dispatch({ type: "ADD", id: foodItem._id, name: foodItem.name, price: finalPrice, qty: qty, size: size,img: props.ImgSrc })
         console.log("Size different so simply ADD one more to the list")
+        console.log(foodItem._id,foodItem.name,finalPrice,qty,size,props.ImgSrc);
+
         setMess('Add to cart successfully ✅');
         return
       }
       return
     }
-    console.log(foodItem._id,foodItem.name,finalPrice,qty,size,props.ImgSrc);
+    // console.log(foodItem._id,foodItem.name,finalPrice,qty,size,props.ImgSrc);
     await dispatch({ type: "ADD", id: foodItem._id, name: foodItem.name, price: finalPrice, qty: qty, size: size })
 
     

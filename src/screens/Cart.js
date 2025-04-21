@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useCart, useDispatchCart } from '../components/ContextReducer';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import empty_cart from '../components/Images/empty_cart.jpeg'
 export default function Cart() {
   let data = useCart();
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function Cart() {
   if (data.length === 0) {
     return (
       <div>
-        <div className='m-5 w-100 text-center fs-3'>The Cart is Empty!</div>
+        <div className='m-5 w-100 text-center fs-3'><img className='w-70 h-70' src={empty_cart} alt="Empty cart" /></div>
       </div>
     )
   }
@@ -46,6 +46,7 @@ export default function Cart() {
 
   let totalPrice = data.reduce((total, food) => total + food.price, 0)
   return (
+
     <div>
 
       {console.log(data)}
@@ -63,19 +64,19 @@ export default function Cart() {
           </thead>
           <tbody>
             {data.map((food, index) => (
-              <tr>
+              <tr className='text-white'>
                 <th scope='row' >{index + 1}</th>
                 <td >{food.name}</td>
                 <td>{food.qty}</td>
                 <td>{food.size}</td>
                 <td>{food.price}</td>
-                <td ><button type="button" className="btn p-0"><DeleteIcon onClick={() => { dispatch({ type: "REMOVE", index: index }) }} /></button> </td></tr>
+                <td ><button type="button" className="btn p-0 text-danger"><DeleteIcon onClick={() => { dispatch({ type: "REMOVE", index: index }) }} /></button> </td></tr>
             ))}
           </tbody>
         </table>
-        <div><h1 className='fs-2'>Total Price: {totalPrice}/-</h1></div>
+        <div><h1 className='fs-2 text-white'>Total Price: {totalPrice}/-</h1></div>
         <div>
-          <button className='btn bg-success mt-5 ' onClick={handleCheckOut} > Check Out </button>
+          <button className='btn bg-success mt-5 hover:text-green-600 hover:border-green-500 hover:bg-black' onClick={handleCheckOut} > Check Out </button>
         </div>
       </div>
 

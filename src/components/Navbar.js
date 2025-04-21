@@ -8,7 +8,6 @@ import { useCart } from './ContextReducer';
 import myImage from './Images/cover.png'
 import './navbar.css'
 import Modal from '../Modal';
-import Box from '@mui/material/Box';
 import Sidebar from './sidebar';
 import Cart from '../screens/Cart';
 export default function Navbar(props) {
@@ -44,7 +43,7 @@ export default function Navbar(props) {
                                     <Link className="myorder link_nav" aria-current="page" to="/myorder" >My Orders</Link>  {/* index.css - nav-link color white */}
                                 </li> 
                                 </ul> : ""}
-                            <div className='search_div'><input className='search_input' placeholder='Search for Food Item' type="search" style={{ width: '30rem' }} /><i class="logo_profile fa-solid fa-magnifying-glass"></i></div>
+                            <div className='search_div'><input className='search_input border-2' placeholder='Search for Food Item' type="search" style={{ width: '30rem' }} /><i class="logo_profile fa-solid fa-magnifying-glass"></i></div>
                         {(!localStorage.getItem("token")) ?
                             <form className="d-flex register_btn_container">
                                 <Link className="login_btn" to="/login">Login</Link>
@@ -52,7 +51,7 @@ export default function Navbar(props) {
                             </form> :
                             <div className='cart_logout'>
                                 <div className="cart_container" onClick={loadCart}>
-                                    <Badge color="secondary"  >
+                                    <Badge color="secondary"  badgeContent={items.length}>
                                         <ShoppingCartIcon />
                                     </Badge>
                                 </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';  // This is for React 17
 import './index.css';
 import App from './App';
+import './tailwind.css'; // Import Tailwind CSS
 
 import reportWebVitals from './reportWebVitals';
 
